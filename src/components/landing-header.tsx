@@ -1,4 +1,5 @@
 import { geistSans, spectral } from "@/lib/fonts/fonts";
+import { ADMIN_SOCIALS } from "@/lib/const/admin";
 import { Github, X } from "@/lib/logo";
 import { cn } from "@/lib/utils";
 import { Mail } from "lucide-react";
@@ -8,7 +9,7 @@ import React from "react";
 function HighlighDescription({ children }: { children: React.ReactNode }) {
   return (
     <strong
-      className="text-black text-[15px] md:text-[17px] font-medium md:font-normal"
+      className="text-orange-400 text-[15px] md:text-[17px] font-medium md:font-normal"
       style={spectral.style}
     >
       {children}
@@ -31,8 +32,8 @@ const SocialLink = ({
         href={href}
         target="_blank"
         className={cn(
-          "size-9 grid place-items-center cursor-pointer border border-transparent hover:border-border transition-all rounded-md bg-white/[0.025] hover:bg-black/[0.05]",
-          className
+          "grid size-9 place-items-center rounded-md border border-border/60 bg-card/60 text-muted-foreground transition-colors hover:border-border hover:bg-accent/70 hover:text-foreground",
+          className,
         )}
       >
         {icon}
@@ -46,17 +47,16 @@ const LandingHeader = () => {
     <div className="max-w-3xl mx-auto py-28">
       <h1
         style={spectral.style}
-        className="text-2xl sm:text-3xl md:text-4xl w-fit mx-auto"
+        className="mx-auto w-fit text-2xl text-foreground sm:text-3xl md:text-4xl"
       >
         Hey there, I&apos;m Shivam!
       </h1>
       <p
-        className="text-gray-500 sm:text-gray-600 text-sm md:text-base text-center mt-6 leading-relaxed px-4"
+        className="mt-6 px-4 text-center text-sm leading-relaxed text-muted-foreground md:text-base"
         style={geistSans.style}
       >
-        I am a <HighlighDescription>full-stack developer</HighlighDescription>{" "}
-        from <HighlighDescription>India</HighlighDescription>, specializing in{" "}
-        <HighlighDescription>improving</HighlighDescription> and{" "}
+        I am a <HighlighDescription>full-stack developer</HighlighDescription>,
+        specializing in <HighlighDescription>improving</HighlighDescription> and{" "}
         <HighlighDescription>refining</HighlighDescription> existing products
         with better UI, UX, and functionality. I build{" "}
         <HighlighDescription>secure</HighlighDescription>,{" "}
@@ -67,11 +67,8 @@ const LandingHeader = () => {
         <HighlighDescription>Hono.Js</HighlighDescription>.
       </p>
       <ul className="flex items-center justify-center space-x-2 mt-6">
-        <SocialLink
-          href="https://github.com/ashokasec"
-          icon={<Github size={20} />}
-        />
-        <SocialLink href="https://x.com/ashokasec" icon={<X size={19} />} />
+        <SocialLink href={ADMIN_SOCIALS.github} icon={<Github size={20} />} />
+        <SocialLink href={ADMIN_SOCIALS.x} icon={<X size={19} />} />
         <SocialLink
           href="mailto:work.shivam@proton.me"
           icon={<Mail size={20} />}

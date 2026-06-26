@@ -1,6 +1,7 @@
 import { existsSync, readdirSync, readFileSync } from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { projects as projectOrder } from '../../../data/projects';
 
 export type DocumentType = "projects" | "blogs" | "research";
 
@@ -15,6 +16,8 @@ export type ProjectMeta = {
     key: string;
     link: string;
     github: string | undefined
+    coverImage: string | undefined
+    containerClassName: string | undefined
 }
 
 export function getAllDocuments(documentType: DocumentType) {
@@ -25,8 +28,7 @@ export function getAllDocuments(documentType: DocumentType) {
         }
 
         const files = readdirSync(documentPath).filter((file) => file.endsWith(".md"));
-
-        return files.map((file) => {
+        const documents = files.map((file) => {
             const filePath = path.join(documentPath, file);
             const content = readFileSync(filePath, 'utf-8');
             const matterResult = matter(content);
@@ -37,8 +39,25 @@ export function getAllDocuments(documentType: DocumentType) {
                 key: matterResult.data.key || "No description available",
                 link: matterResult.data.link,
                 github: matterResult.data.github,
-                timeline: matterResult.data.timeline
+                timeline: matterResult.data.timeline,
+                coverImage: matterResult.data.coverImage,
+                containerClassName: matterResult.data.containerClassName,
             } as ProjectMeta;
+        });
+
+        if (documentType !== "projects") {
+            return documents;
+        }
+
+        const orderMap = new Map(
+            projectOrder.map((project, index) => [project.coverKey, index])
+        );
+
+        return documents.sort((left, right) => {
+            const leftOrder = orderMap.get(left.key) ?? Number.MAX_SAFE_INTEGER;
+            const rightOrder = orderMap.get(right.key) ?? Number.MAX_SAFE_INTEGER;
+
+            return leftOrder - rightOrder;
         });
     } catch (error) {
         console.error("Error fetching documents:", error);
@@ -67,7 +86,9 @@ export function getDocumentContent({ documentType, slug }: { documentType: Docum
                         key: matterResult.data.key || "No description available",
                         link: matterResult.data.link,
                         github: matterResult.data.github,
-                        timeline: matterResult.data.timeline
+                        timeline: matterResult.data.timeline,
+                        coverImage: matterResult.data.coverImage,
+                        containerClassName: matterResult.data.containerClassName,
                     } as ProjectMeta,
                 }
             default:

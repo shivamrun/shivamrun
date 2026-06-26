@@ -18,7 +18,7 @@ export function Heading({
     {
       style: spectral.style,
       className: cn(
-        "text-[#282829] font-semibold",
+        "text-foreground font-semibold",
         {
           "text-2xl sm:text-3xl md:text-4xl": level === 1,
           "text-xl sm:text-2xl": level === 2,
