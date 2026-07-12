@@ -15,6 +15,7 @@ import {
   getDocumentContent,
   type ProjectMeta,
 } from "./util";
+import { lora } from "@/app/layout";
 
 function isProjectMetadata(metadata: unknown): metadata is ProjectMeta {
   return Boolean(
@@ -44,12 +45,22 @@ export async function generateMetadata({
     documentType: "projects",
     slug: app_slug,
   });
-  const projectMetadata = isProjectMetadata(paper?.metadata)
-    ? paper.metadata
-    : null;
+  const projectEntry = getProjectByKey(app_slug);
   const title = paper?.metadata?.title || "Project";
   const description = paper?.metadata?.description || "";
   const canonicalUrl = toAbsoluteUrl(`/projects/${app_slug}`);
+  const keywords = Array.from(
+    new Set([
+      title,
+      ...(projectEntry?.keywords ?? []),
+      "shivam.run",
+      "shivamrun",
+      "@shivamrun",
+      "Shivam Gupta",
+      "software project",
+      "portfolio",
+    ]),
+  );
 
   return {
     title,
@@ -57,15 +68,7 @@ export async function generateMetadata({
     alternates: {
       canonical: canonicalUrl,
     },
-    keywords: [
-      title,
-      "shivam.run",
-      "shivamrun",
-      "@shivamrun",
-      "Shivam Gupta",
-      "software project",
-      "portfolio",
-    ],
+    keywords,
     openGraph: {
       type: "article",
       url: canonicalUrl,
@@ -183,7 +186,7 @@ async function Page({ params }: { params: Promise<{ app_slug: string }> }) {
           </Heading>
           <p
             className="mt-2 text-center text-muted-foreground sm:mt-6"
-            style={spectral.style}
+            style={lora.style}
           >
             {paper.metadata.description}
           </p>
@@ -229,34 +232,9 @@ async function Page({ params }: { params: Promise<{ app_slug: string }> }) {
               className="max-h-48 w-auto select-none rounded-full object-contain sm:max-h-40"
             />
           </div>
-          <Markdown
-            options={{
-              overrides: {
-                h1: {
-                  component: ({ children }) => (
-                    <Heading level={1}>{children}</Heading>
-                  ),
-                },
-                h2: {
-                  component: ({ children }) => (
-                    <Heading level={2}>{children}</Heading>
-                  ),
-                },
-                h3: {
-                  component: ({ children }) => (
-                    <Heading level={3}>{children}</Heading>
-                  ),
-                },
-                h4: {
-                  component: ({ children }) => (
-                    <Heading level={4}>{children}</Heading>
-                  ),
-                },
-              },
-            }}
-          >
-            {paper.content}
-          </Markdown>
+          <div className="typeset typeset-docs max-w-5xl mx-auto">
+            <Markdown>{paper.content}</Markdown>
+          </div>
         </article>
       ) : (
         <p>No content available</p>

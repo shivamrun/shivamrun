@@ -1,8 +1,18 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { geistSans } from "@/lib/fonts/fonts";
+import { Geist_Mono, Lora } from "next/font/google";
 import { ADMIN, HEADLINE } from "@/lib/const/admin";
 import Footer from "@/components/footer";
+
+export const lora = Lora({
+  subsets: ["latin"],
+  variable: "--font-lora",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(ADMIN.website),
@@ -46,10 +56,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body
-        className={`${geistSans.variable} min-h-screen bg-background text-foreground antialiased`}
-      >
+    <html lang="en" className={`${lora.variable} ${geistMono.variable} dark`}>
+      <body className="min-h-screen bg-background text-foreground antialiased">
         {children}
         <Footer />
       </body>

@@ -1,12 +1,22 @@
 @import "tailwindcss";
+@import "./typeset.css";
 @import "tw-animate-css";
+
+.typeset-docs {
+  --typeset-font-body: var(--font-lora);
+  --typeset-font-heading: var(--font-lora);
+  --typeset-font-mono: var(--font-geist-mono);
+  --typeset-size: 16px;
+  --typeset-leading: 1.75;
+  --typeset-flow: 1.25em;
+}
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-lora);
   --font-mono: var(--font-geist-mono);
   --font-spectral: var(--font-spectral);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -91,66 +101,4 @@
   body {
     @apply bg-background text-foreground;
   }
-  article h2 {
-    @apply mt-8 mb-4 max-w-3xl mx-auto;
-  }
-  article h3 {
-    @apply mt-8 mb-4 max-w-3xl mx-auto;
-  }
-  article h4 {
-    @apply mt-8 mb-4 max-w-3xl mx-auto;
-  }
-  article hr {
-    @apply my-6;
-  }
-  article img {
-    @apply rounded-[2px] my-12
-  }
-  article p {
-    @apply mb-5 max-w-3xl mx-auto text-muted-foreground text-[15.5px] sm:text-[16.5px] md:text-lg
-  }
-  article p:has(img) {
-    @apply max-w-4xl
-  }
-  article strong {
-    @apply font-semibold text-foreground text-[15.5px] sm:text-[16.5px] md:text-lg
-  }
-  article ul {
-    @apply space-y-2 list-disc mb-8 max-w-3xl mx-auto pl-5
-  }
-  article ul li {
-    @apply pl-1 text-muted-foreground text-[15.5px] sm:text-[16.5px] md:text-lg
-  }
-  article ul li strong {
-    @apply text-foreground text-[15.5px] sm:text-[16.5px] md:text-lg
-  }
-  article code {
-    @apply text-base bg-card inline-block my-0.5 py-0.5 px-1 md:py-1 md:px-1.5 rounded-sm mr-1 border border-border text-foreground text-[15px] sm:text-[16.5px] md:text-[17px]
-  }
-  article li code {
-    @apply py-0.5 px-1 md:py-1 md:px-1.5 rounded-sm mr-1 border border-border text-sm sm:text-[15px] md:text-base
-  }
-  article a {
-    @apply font-medium rounded-[2px] px-px text-foreground transition-colors underline underline-offset-2 decoration-1 decoration-muted-foreground/70 hover:bg-accent/60 hover:decoration-foreground
-  }
-  article a code {
-    @apply hover:bg-accent/60 transition-colors text-[15px] sm:text-[16.5px] md:text-[17px]
-  }
-  article table {
-    @apply w-full mt-4 text-left text-[16.5px] max-w-3xl mx-auto font-medium text-muted-foreground
-  }
-  
-  article thead {
-    @apply bg-card text-foreground text-[15px] sm:text-[16.5px] md:text-[17px];
-  }
-  
-  article th, article td {
-    @apply p-3 border border-border text-[15px] sm:text-[16.5px] md:text-[17px];
-  }
-  
-  article tbody tr:hover {
-    @apply bg-accent/40;
-  }
-
-  
 }
