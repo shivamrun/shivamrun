@@ -28,6 +28,41 @@ export type ProjectEntry = {
 
 export const projects: ProjectEntry[] = [
     {
+        name: "Better Auth Referral",
+        description: "A Better Auth plugin that adds referral codes, referral attribution, dashboard stats, and referred-user lists to your app.",
+        timeline: "Open source",
+        coverKey: "better-auth-referral",
+        coverImage: "http://github.com/better-auth.png",
+        containerClassName: "p-4 sm:p-6 bg-card/80",
+        link: "https://github.com/marinedotsh/better-auth-referral",
+        github: "https://github.com/marinedotsh/better-auth-referral",
+        projectType: "Open-source auth plugin",
+        status: "Public repository",
+        bestFor: "Developers building referral loops on top of Better Auth without maintaining custom referral infrastructure.",
+        keywords: [
+            "Better Auth",
+            "TypeScript",
+            "referral codes",
+            "auth plugin",
+            "user referrals",
+            "SaaS growth",
+        ],
+        highlights: [
+            "Generates unique referral codes for users and attributes referred email signups.",
+            "Exposes typed Better Auth endpoints for referral stats and referred-user lists.",
+            "Supports optional email masking and a callback for custom reward workflows.",
+        ],
+        repository: {
+            stars: 0,
+            forks: 0,
+            primaryLanguage: "TypeScript",
+            license: "MIT License",
+            lastUpdated: "2026-07-12",
+            topics: [],
+            asOf: "2026-07-12",
+        },
+    },
+    {
         name: "Reva",
         description: "A lightweight Discord timezone bot that instantly shows a member's local time for global communities and remote teams.",
         timeline: "Live now",
