@@ -70,7 +70,7 @@ const LandingHeader = () => {
         <SocialLink href={ADMIN_SOCIALS.github} icon={<Github size={20} />} />
         <SocialLink href={ADMIN_SOCIALS.x} icon={<X size={19} />} />
         <SocialLink
-          href="mailto:work.shivam@proton.me"
+          href="mailto:hello@shivam.run"
           icon={<Mail size={20} />}
         />
       </ul>

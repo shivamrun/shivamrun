@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
         return [
             {
                 source: '/resume',
-                destination: 'https://drive.google.com/file/d/1nhT4R10S0efEC-pCMQmoQopAfjkWSTve/view',
+                destination: 'https://drive.google.com/file/d/1hp7wPrxsZy76En91QHUZqFZQP2KdKXjK/view',
                 permanent: false,
             }
            ] 
